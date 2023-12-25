@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
+import {
+  StyleSheet,
+  Text, View, Button,
+  TextInput, ScrollView,
+  FlatList
+} from 'react-native';
 
 export default function App() {
   const [newGoal, setNewGoal] = useState('');
@@ -27,13 +32,20 @@ export default function App() {
       </View>
 
       <View style={styles.goalsContainer}>
-        <ScrollView alwaysBounceVertical="false">
-          {myGoals.map((goal) =>
-            <View key={goal} style={styles.goalItem}>
-              <Text style={styles.goalText} >{goal}</Text>
-            </View>
-          )}
-        </ScrollView>
+        <FlatList
+          data={myGoals}
+          alwaysBounceVertical="false"
+          renderItem={(dataItem) => {
+            return (
+              <View key={dataItem.item} style={styles.goalItem}>
+                <Text style={styles.goalText} >{dataItem.item}</Text>
+              </View>
+            )
+          }
+          }
+
+
+        />
       </View>
 
     </View >
