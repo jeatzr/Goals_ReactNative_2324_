@@ -18,7 +18,14 @@ export default function App() {
 
   function addGoalHandler() {
     console.log(newGoal);
-    setMyGoals(currentGoals => [...currentGoals, newGoal]);
+    setMyGoals(currentGoals =>
+      [...currentGoals,
+      {
+        text: newGoal,
+        id: Date.now()
+      }
+      ]);
+    setNewGoal("")
 
   }
 
@@ -27,7 +34,8 @@ export default function App() {
       <View style={styles.inputContainer}>
         <TextInput placeholder="Your Course Goal!!"
           onChangeText={goalInputHandler}
-          style={styles.textInput} />
+          style={styles.textInput}
+          value={newGoal} />
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
 
@@ -37,8 +45,11 @@ export default function App() {
           alwaysBounceVertical="false"
           renderItem={(dataItem) => {
             return (
-              <View key={dataItem.item} style={styles.goalItem}>
-                <Text style={styles.goalText} >{dataItem.item}</Text>
+              <View key={dataItem.item.id}
+                style={styles.goalItem}>
+                <Text style={styles.goalText} >
+                  {dataItem.item.text}
+                </Text>
               </View>
             )
           }
