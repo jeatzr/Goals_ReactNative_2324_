@@ -3,7 +3,7 @@ import {
   StyleSheet,
   View,
   TextInput,
-  Button
+  Button,
 } from 'react-native';
 
 function GoalInput({ onAddGoal }) {

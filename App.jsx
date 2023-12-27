@@ -13,6 +13,11 @@ import GoalInput from './components/GoalInput';
 export default function App() {
   const [myGoals, setMyGoals] = useState([]);
 
+  function deleteGoalHandler(id) {
+    console.log("DELETE " + id)
+    setMyGoals(myGoals => myGoals.filter((goal) => goal.id != id));
+  }
+
   function addGoalHandler(newGoal) {
     console.log(newGoal);
     setMyGoals(currentGoals =>
@@ -32,9 +37,11 @@ export default function App() {
         <FlatList
           data={myGoals}
           alwaysBounceVertical="false"
-          renderItem={(dataItem) => {
-            return <GoalItem text={dataItem.item.text}
-              id={dataItem.item.id} />
+          renderItem={(itemData) => {
+            return <GoalItem text={itemData.item.text}
+              id={itemData.item.id}
+              onGoalDelete={deleteGoalHandler}
+            />
           }}
         />
       </View>
