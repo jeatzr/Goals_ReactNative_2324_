@@ -4,7 +4,8 @@ import {
   View,
   TextInput,
   Button,
-  Modal
+  Modal,
+  Image,
 } from 'react-native';
 
 function GoalInput({ onAddGoal, visible, onCancel }) {
@@ -19,22 +20,28 @@ function GoalInput({ onAddGoal, visible, onCancel }) {
   return (
     <Modal visible={visible} animationType='slide'>
       <View style={styles.inputContainer}>
+        <Image source={require("../assets/img/goal.png")}
+          style={styles.image}
+        />
         <TextInput placeholder="Your Course Goal!!"
           onChangeText={goalInputHandler}
           style={styles.textInput}
           value={newGoal} />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="Add Goal" onPress={() => {
-              if (newGoal) {
-                onAddGoal(newGoal);
-                setNewGoal("");
-              }
-            }} />
+            <Button title="Cancel" onPress={onCancel} color="#f31282"></Button>
           </View>
           <View style={styles.button}>
-            <Button title="Cancel" onPress={onCancel}></Button>
+            <Button
+              color="#b496dc"
+              title="Add Goal" onPress={() => {
+                if (newGoal) {
+                  onAddGoal(newGoal);
+                  setNewGoal("");
+                }
+              }} />
           </View>
+
         </View>
 
       </View>
@@ -49,16 +56,17 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: 'center',
-    marginBottom: 20,
-    borderBottomWidth: 1,
-    borderColor: "#ccc",
-    padding: 20
+    padding: 20,
+    backgroundColor: "#311b6b"
   },
   textInput: {
-    borderColor: "#cccccc",
+    borderColor: "#e4d0ff",
+    backgroundColor: "#e4d0ff",
     borderWidth: 1,
+    color: "#120438",
     width: "100%",
-    padding: 8
+    borderRadius: 10,
+    padding: 20,
   },
   buttonContainer: {
     marginTop: 20,
@@ -67,6 +75,14 @@ const styles = StyleSheet.create({
   button: {
     width: '30%',
     marginHorizontal: 8
+  },
+  image:
+  {
+    width: 100,
+    height: 100,
+    margin: 20
+
+
   }
 });
 

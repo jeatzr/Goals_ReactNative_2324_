@@ -5,6 +5,7 @@ import {
   Pressable
 } from 'react-native';
 
+
 function GoalItem({ text, id, onGoalDelete }) {
   return (
     <Pressable
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginVertical: 6,
     padding: 14,
-    backgroundColor: "#092FE0",
+    backgroundColor: "#512091",
 
   },
   goalText: {
